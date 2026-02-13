@@ -1,32 +1,28 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
+import { of } from 'rxjs';
 import { App } from './app';
+import { TaskService } from './services/task.service';
 
 describe('App Component', () => {
 
-  let component: App;
-  let fixture: ComponentFixture<App>;
+  const mockTaskService = {
+    obtenerTareas: () => of([]),
+    crearTarea: () => of({})
+  };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [App]
+      imports: [App],
+      providers: [
+        { provide: TaskService, useValue: mockTaskService }
+      ]
     }).compileComponents();
-
-    fixture = TestBed.createComponent(App);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('Debe crearse correctamente', () => {
-
-    // Arrange
-    // El componente ya está creado
-
-    // Act
-    const creado = component;
-
-    // Assert
-    expect(creado).toBeTruthy();
-
+    const fixture = TestBed.createComponent(App);
+    const app = fixture.componentInstance;
+    expect(app).toBeTruthy();
   });
 
 });
