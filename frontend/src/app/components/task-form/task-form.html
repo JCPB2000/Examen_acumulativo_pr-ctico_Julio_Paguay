@@ -1,0 +1,38 @@
+<h2>Registrar Nueva Tarea</h2>
+
+<form [formGroup]="taskForm" (ngSubmit)="submit()">
+
+  <input type="text" placeholder="Título" formControlName="titulo">
+  <div *ngIf="taskForm.get('titulo')?.invalid && taskForm.get('titulo')?.touched">
+    El título es obligatorio
+  </div>
+
+  <input type="text" placeholder="Descripción" formControlName="descripcion">
+  <div *ngIf="taskForm.get('descripcion')?.invalid && taskForm.get('descripcion')?.touched">
+    La descripción es obligatoria
+  </div>
+
+  <input type="date" formControlName="fechaLimite">
+  <div *ngIf="taskForm.get('fechaLimite')?.invalid && taskForm.get('fechaLimite')?.touched">
+    La fecha es obligatoria
+  </div>
+
+  <select formControlName="prioridad">
+    <option value="">Seleccione prioridad</option>
+    <option value="Alta">Alta</option>
+    <option value="Media">Media</option>
+    <option value="Baja">Baja</option>
+  </select>
+
+  <select formControlName="estado">
+    <option value="">Seleccione estado</option>
+    <option value="Pendiente">Pendiente</option>
+    <option value="En progreso">En progreso</option>
+    <option value="Completada">Completada</option>
+  </select>
+
+  <button type="submit" [disabled]="taskForm.invalid">
+    Guardar Tarea
+  </button>
+
+</form>

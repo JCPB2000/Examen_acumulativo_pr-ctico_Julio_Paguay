@@ -1,0 +1,7 @@
+<h1>Gestor de Tareas</h1>
+
+<app-task-form (taskCreated)="addTask($event)"></app-task-form>
+
+<hr>
+
+<app-task-list [tasks]="tasks"></app-task-list>
